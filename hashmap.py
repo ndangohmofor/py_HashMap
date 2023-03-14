@@ -29,7 +29,7 @@ class HashMap:
 
         number_collisions = 1
 
-        while (current_array_value[0] != key):
+        while current_array_value[0] != key:
             new_hash_code = self.hash(key, number_collisions)
             new_array_index = self.compressor(new_hash_code)
             current_array_value = self.array[new_array_index]
@@ -45,9 +45,22 @@ class HashMap:
             number_collisions += 1
             return
 
-        def retrieve(self, key):
-            array_index = self.compressor(self.hash(key))
-            possible_return_value = self.array[array_index]
+    def retrieve(self, key):
+        array_index = self.compressor(self.hash(key))
+        possible_return_value = self.array[array_index]
+
+        if possible_return_value is None:
+            return None
+
+        if possible_return_value[0] == key:
+            return possible_return_value[1]
+
+        retrieval_collision = 1
+
+        while possible_return_value[0] != key:
+            new_hash_code = self.hash(key, retrieval_collision)
+            retrieving_array_index = self.compressor(new_hash_code)
+            possible_return_value = self.array[retrieving_array_index]
 
             if possible_return_value is None:
                 return None
@@ -55,19 +68,6 @@ class HashMap:
             if possible_return_value[0] == key:
                 return possible_return_value[1]
 
-            retrieval_collision = 1
+            retrieval_collision += 1
 
-            while (possible_return_value[0] != key):
-                new_hash_code = self.hash(key, retrieval_collision)
-                retrieving_array_index = self.compressor(new_hash_code)
-                possible_return_value = self.array[retrieving_array_index]
-
-                if possible_return_value is None:
-                    return None
-
-                if possible_return_value[0] == key:
-                    return possible_return_value[1]
-
-                retrieval_collision += 1
-
-            return
+        return
