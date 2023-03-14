@@ -1,16 +1,11 @@
-# This is a sample Python script.
+from hashmap import HashMap
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+hash_map = HashMap(15)
 
+hash_map.assign('gabbro', 'igneous')
+hash_map.assign('sandstone', 'sedimentary')
+hash_map.assign('gneiss', 'metomorphic')
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# print(hash_map.retrieve('gabbro'))
+# print(hash_map.retrieve('sandstone'))
+# print(hash_map.retrieve('gneiss'))
